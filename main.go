@@ -70,10 +70,16 @@ func (cfw *CatFactWorker) start() error {
 		if err := json.NewDecoder(resp.Body).Decode(&catFact); err != nil {
 			return err
 		}
-
-		_, err = collection.InsertOne(context.Background(), catFact)
-		if err != nil {
+		// check if cat fact already exists in collection
+		filter := bson.M{"fact": catFact["fact"]}
+		doc := collection.FindOne(context.Background(), filter)
+		if doc != nil {
 			return err
+		} else {
+			_, err = collection.InsertOne(context.Background(), catFact)
+			if err != nil {
+				return err
+			}
 		}
 		<-ticker.C
 	}
