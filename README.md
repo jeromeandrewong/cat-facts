@@ -1,3 +1,19 @@
+# Cat Facts API
+
+- First simple project for practicing Go
+- Sends Request to catfact.ninja/facts endpoint to retrieve random facts every 2 seconds, stores the fact in mongoDB if it doesn't exist yet.
+
+## Concepts practiced
+
+- pointers
+- Goroutines and channels
+- mongoDB with Go (bson, cursor etc.)
+- lean/basic err handling
+- http package
+- time package (ticker)
+
+# Set up
+
 ## Installing mongodb
 
 ### Installing mongodb with Docker
@@ -18,6 +34,6 @@ go get go.mongodb.org/mongo-driver/bson
 ```
 client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb://localhost:27017"))
 	if err != nil {
-		panic(err)
+		log.Fatal(err)
 	}
 ```
