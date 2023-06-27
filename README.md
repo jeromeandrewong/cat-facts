@@ -1,6 +1,6 @@
 # Cat Facts API
 
-- First simple project for practicing Go
+- Simple project for practicing Go
 - Sends Request to catfact.ninja/facts endpoint to retrieve random facts every 2 seconds, stores the fact in mongoDB if it doesn't exist yet.
 
 ## Concepts practiced
@@ -36,4 +36,10 @@ client, err := mongo.Connect(context.TODO(), options.Client().ApplyURI("mongodb:
 	if err != nil {
 		log.Fatal(err)
 	}
+```
+
+# API endpoint
+
+```
+http://localhost:3000/facts
 ```
